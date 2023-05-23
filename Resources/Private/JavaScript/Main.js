@@ -1,6 +1,8 @@
 import ContentBlocker from "./ContentBlocker";
-$(function () {
-  ContentBlocker.mount();
+
+window.addEventListener("DOMContentLoaded", (event) => {
+    ContentBlocker.mount();
+    window.ContentBlocker = ContentBlocker;
 });
 
-window.ContentBlocker = ContentBlocker;
+
