@@ -128,10 +128,9 @@ class Member extends AbstractEntity
     protected $altBillingCity;
 
     /**
-     * @var Country
-     * @Lazy
+     * @var string
      */
-    protected $altBillingCountry;
+    protected $altBillingCountry = '';
 
     /**
      * @var \string
@@ -174,10 +173,9 @@ class Member extends AbstractEntity
     protected $city = '';
 
     /**
-     * @var Country
-     * @Lazy
+     * @var string
      */
-    protected $country;
+    protected $country = '';
 
     /**
      * @var \string
@@ -391,19 +389,12 @@ class Member extends AbstractEntity
         $this->nationality = $nationality;
     }
 
-    public function getCountry()
+    public function getCountry(): string
     {
-        if ($this->country instanceof LazyLoadingProxy) {
-            /** @var Country|null $resolvedValue */
-            $resolvedValue = $this->country->_loadRealInstance();
-            return $this->country = $resolvedValue instanceof Country
-                ? $resolvedValue
-                : null;
-        }
         return $this->country;
     }
 
-    public function setCountry(Country $country)
+    public function setCountry(string $country)
     {
         $this->country = $country;
     }
@@ -552,19 +543,12 @@ class Member extends AbstractEntity
         $this->altBillingCity = $altBillingCity;
     }
 
-    public function getAltBillingCountry()
+    public function getAltBillingCountry(): string
     {
-        if ($this->altBillingCountry instanceof LazyLoadingProxy) {
-            /** @var Country|null $resolvedValue */
-            $resolvedValue = $this->altBillingCountry->_loadRealInstance();
-            return $this->altBillingCountry = $resolvedValue instanceof Country
-                ? $resolvedValue
-                : null;
-        }
         return $this->altBillingCountry;
     }
 
-    public function setAltBillingCountry($altBillingCountry)
+    public function setAltBillingCountry(string $altBillingCountry)
     {
         $this->altBillingCountry = $altBillingCountry;
     }

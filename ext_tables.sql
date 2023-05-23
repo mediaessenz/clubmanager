@@ -26,8 +26,8 @@ CREATE TABLE tx_clubmanager_domain_model_member (
 	street varchar(255) DEFAULT '' NOT NULL,
 	zip varchar(255) DEFAULT '' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,
-	country int(11) unsigned DEFAULT '0',
-	
+	country varchar(255) DEFAULT '' NOT NULL,
+
 	ident varchar(255) DEFAULT '' NOT NULL,
 	state int(11) DEFAULT '0' NOT NULL,
 	email varchar(255) DEFAULT '' NOT NULL,
@@ -49,7 +49,7 @@ CREATE TABLE tx_clubmanager_domain_model_member (
 	alt_billing_street varchar(255) DEFAULT '' NOT NULL,
 	alt_billing_zip varchar(255) DEFAULT '' NOT NULL,
 	alt_billing_city varchar(255) DEFAULT '' NOT NULL,
-	alt_billing_country int(11) unsigned DEFAULT '0',
+	alt_billing_country varchar(255) DEFAULT '' NOT NULL,
 
 	customfield1 varchar(255) DEFAULT '' NOT NULL,
 	customfield2 varchar(255) DEFAULT '' NOT NULL,
@@ -88,7 +88,7 @@ CREATE TABLE tx_clubmanager_domain_model_location (
 	zip varchar(255) DEFAULT '' NOT NULL,
 	city varchar(255) DEFAULT '' NOT NULL,
 	state int(11) unsigned DEFAULT '0',
-	country int(11) unsigned DEFAULT '0',
+	country varchar(255) DEFAULT '' NOT NULL,
 
 	latitude varchar(255) DEFAULT '' NOT NULL,
 	longitude varchar(255) DEFAULT '' NOT NULL,
@@ -124,8 +124,8 @@ CREATE TABLE tx_clubmanager_sanitizevalue_mapping (
 	table_name varchar(255) DEFAULT '' NOT NULL,
 	column_name varchar(255) DEFAULT '' NOT NULL,
 	PRIMARY KEY (uid),
-	INDEX sanitizedValueIdx (sanitized_value, table_name, column_name),
-	INDEX originalValueIdx (original_value, table_name, column_name)
+	KEY sanitizedValueIdx (sanitized_value, table_name, column_name),
+	KEY originalValueIdx (original_value, table_name, column_name)
 );
 
 #
@@ -139,14 +139,14 @@ CREATE TABLE sys_category (
 # Table structure for table 'tx_clubmanager_mail_task'
 #
 CREATE TABLE tx_clubmanager_domain_model_mail_task (
-	priority_level int(11) DEFAULT '0' NOT NULL, 
-	send_state int(11) DEFAULT '0' NOT NULL, 
+	priority_level int(11) DEFAULT '0' NOT NULL,
+	send_state int(11) DEFAULT '0' NOT NULL,
 	generator_class varchar(512) DEFAULT '' NOT NULL,
-	generator_arguments text DEFAULT '' NOT NULL,
+	generator_arguments text,
 	processed_time datetime default NULL,
 	error_time datetime default NULL,
-	error_message text DEFAULT '' NOT NULL,
-	open_tries int(11) DEFAULT '0' NOT NULL, 
+	error_message text,
+	open_tries int(11) DEFAULT '0' NOT NULL,
 );
 
 #

@@ -9,31 +9,32 @@
             <div class="card">
                 <header class="card-header">
                     <div class="h2">
-                        <span class="salutation">
-                            <f:if condition="{member.salutation} == 0">
-                                <f:then>
-                                    {f:translate(key:'content_element.member.salutation.company',extensionName:'clubmanager')}
-                                </f:then>
-                                <f:else if="{member.salutation} == 1">
-                                    {f:translate(key:'content_element.member.salutation.male',extensionName:'clubmanager')}
-                                </f:else>
-                                <f:else if="{member.salutation} == 2">
-                                    {f:translate(key:'content_element.member.salutation.female',extensionName:'clubmanager')}
-                                </f:else>
-                                <f:else if="{member.salutation} == 3">
-                                    {f:translate(key:'content_element.member.salutation.divers',extensionName:'clubmanager')}
-                                </f:else>
-                            </f:if>
-                        </span>
+                        <f:if condition="{member.salutation} > 0">
+                            <span class="salutation">
+                                <f:switch expression="{member.salutation}">
+                                    <f:case value="1">
+                                        {f:translate(key:'content_element.member.salutation.male',extensionName:'clubmanager')}
+                                    </f:case>
+                                    <f:case value="2">
+                                        {f:translate(key:'content_element.member.salutation.female',extensionName:'clubmanager')}
+                                    </f:case>
+                                    <f:case value="3">
+                                        {f:translate(key:'content_element.member.salutation.divers',extensionName:'clubmanager')}
+                                    </f:case>
+                                </f:switch>
+                            </span>
+                        </f:if>
                         <f:if condition="{member.title}">
                             <span class="title">{member.title}</span>&nbsp;
                         </f:if>
-                        <span class="firstname">{member.firstname}</span>&nbsp;<span class="lastname">{member.lastname}</span>
+                        <span class="firstname">{member.firstname}</span>&nbsp;<span
+                        class="lastname">{member.lastname}</span>
                     </div>
 
                     <div class="h3">
                         <f:if condition="{member.ident}">
-                            <span class="identlabel">{f:translate(key:'content_element.member.label.ident',extensionName:'clubmanager')}</span>&nbsp;<span class="ident">{member.ident}</span>
+                            <span class="identlabel">{f:translate(key:'content_element.member.label.ident',extensionName:'clubmanager')}</span>&nbsp;<span
+                            class="ident">{member.ident}</span>
                         </f:if>
                     </div>
 
@@ -42,7 +43,8 @@
                         <strong>
                             <f:if condition="{member.categories}">
                                 <f:then>
-                                    <f:for each="{member.categories}" as="category" key="key" iteration="filterIterator">
+                                    <f:for each="{member.categories}" as="category" key="key"
+                                           iteration="filterIterator">
                                         <f:if condition="{filterIterator.index}>0">
                                             <f:then>
                                                 &bull; {category.title}
@@ -103,7 +105,8 @@
                         <span class="levellabel btn btn-default">
                             {f:translate(key:'content_element.member.label.level',extensionName:'clubmanager')}
                         </span>
-                        <span class="level btn {f:if(condition: '{member.level} == 0', then: 'btn-default')}{f:if(condition: '{member.level} == 10', then: 'btn-primary')}{f:if(condition: '{member.level} == 20', then: 'btn-secondary')}{f:if(condition: '{member.level} == 30', then: 'btn-tertiary')}">
+                        <span
+                            class="level btn {f:if(condition: '{member.level} == 0', then: 'btn-default')}{f:if(condition: '{member.level} == 10', then: 'btn-primary')}{f:if(condition: '{member.level} == 20', then: 'btn-secondary')}{f:if(condition: '{member.level} == 30', then: 'btn-tertiary')}">
                             <f:if condition="{member.level} == 0">
                                 <f:then>
                                     {f:translate(key:'content_element.member.level.basic',extensionName:'clubmanager')}
@@ -126,7 +129,8 @@
                             <span class="levellabel btn btn-default">
                                 {f:translate(key:'content_element.member.label.reducedRate',extensionName:'clubmanager')}
                             </span>
-                            <span class="level btn {f:if(condition: '{member.reducedRate} == 0', then: 'btn-default')}{f:if(condition: '{member.reducedRate} == 1', then: 'btn-warning')}">
+                            <span
+                                class="level btn {f:if(condition: '{member.reducedRate} == 0', then: 'btn-default')}{f:if(condition: '{member.reducedRate} == 1', then: 'btn-warning')}">
                                 {f:translate(key:'content_element.member.reducedRate.yes',extensionName:'clubmanager')}
                             </span>
                         </div>
@@ -137,7 +141,8 @@
                             <span class="levellabel btn btn-default">
                                 {f:translate(key:'content_element.member.label.cancellationWish',extensionName:'clubmanager')}
                             </span>
-                            <span class="level btn {f:if(condition: '{member.cancellationWish} == 0', then: 'btn-default')}{f:if(condition: '{member.cancellationWish} == 1', then: 'btn-warning')}">
+                            <span
+                                class="level btn {f:if(condition: '{member.cancellationWish} == 0', then: 'btn-default')}{f:if(condition: '{member.cancellationWish} == 1', then: 'btn-warning')}">
                                 {f:translate(key:'content_element.member.cancellationWish.yes',extensionName:'clubmanager')}
                             </span>
                         </div>
@@ -162,14 +167,18 @@
                     <p class="card-text mb-2">
                         <span class="street">{member.street}</span><br/>
                         <span class="zip">{member.zip} </span> <span class="city">{member.city}</span><br/>
-                        <span class="country">{member.country.shortNameLocal}</span>
+                        <span class="country"><f:translate
+                            key="LLL:EXT:core/Resources/Private/Language/Iso/countries.xlf:{member.country}.name"/></span>
                     </p>
 
                     <p class="card-text mb-2">
-                        <span class="phone"><a href="tel:{member.phone}">{member.phone}</a></span><br/>
-                        <span class="email">
-                            <f:link.email email="{member.email}"/>
-                        </span>
+                        <span class="phone"><a href="tel:{member.phone}">{member.phone}</a></span>
+                        <f:if condition="{member.email}">
+                            <br/>
+                            <span class="email">
+                                <f:link.email email="{member.email}"/>
+                            </span>
+                        </f:if>
                     </p>
                     <a href="javascript:history.back()">
                         <div class="btn btn-default">

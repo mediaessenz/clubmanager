@@ -32,7 +32,7 @@ return [
 		        --div--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.tab.locations,
                     main_location,
                     sub_locations,
-		        --div--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.tab.bank, 
+		        --div--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.tab.bank,
                     --palette--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.palette.account; bank_account,
                     --palette--;LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.palette.alt_address; alt_address,
                 --div--;LLL:EXT:core/Resources/Private/Language/locallang_tca.xlf:sys_category.tabs.category, categories,
@@ -44,7 +44,7 @@ return [
         '1'           => ['showitem' => ''],
         'membership' => [
             'showitem' => '
-                ident, --linebreak--, 
+                ident, --linebreak--,
                 state, level, --linebreak--,
                 reduced_rate, cancellation_wish, --linebreak--,
                 starttime, endtime,--linebreak--,
@@ -56,7 +56,7 @@ return [
             'showitem' => '
                 person_type, nationality,--linebreak--,
                 salutation, title, --linebreak--,
-                firstname, midname, --linebreak--, 
+                firstname, midname, --linebreak--,
                 lastname,  dateofbirth
             '
         ],
@@ -332,12 +332,14 @@ return [
             'config'  => [
                 'type'                => 'select',
                 'renderType'          => 'selectSingle',
-                'foreign_table'       => 'static_countries',
-                'foreign_table_where' => 'ORDER BY static_countries.cn_short_local',
+                'items'               => \Quicko\Clubmanager\Domain\Helper\Countries::getCountries(),
                 'size'                => 1,
-                'default'             => 54,
+                'default'             => 'DE',
                 'minitems'            => 0,
                 'maxitems'            => 1,
+                'sortItems' => [
+                    'label' => 'asc',
+                ],
             ],
         ],
 
@@ -576,16 +578,15 @@ return [
             'exclude' => true,
             'label' => 'LLL:EXT:clubmanager/Resources/Private/Language/locallang_db.xlf:tx_clubmanager_domain_model_member.alt_billing_country',
             'config'  => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'foreign_table' => 'static_countries',
-                'foreign_table_where' => 'ORDER BY static_countries.cn_short_local',
-                'size' => 1,
-                'default' => 54,
-                'minitems' => 0,
-                'maxitems' => 1,
-                'items' => [
-                    ['', ''],
+                'type'                => 'select',
+                'renderType'          => 'selectSingle',
+                'items'               => \Quicko\Clubmanager\Domain\Helper\Countries::getCountries(),
+                'size'                => 1,
+                'default'             => 'DE',
+                'minitems'            => 0,
+                'maxitems'            => 1,
+                'sortItems' => [
+                    'label' => 'asc',
                 ],
             ],
         ],

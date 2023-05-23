@@ -2,6 +2,7 @@
 
 namespace Quicko\Clubmanager\Domain\Model;
 
+use DateTime;
 use TYPO3\CMS\Extbase\Annotation\ORM\Cascade;
 use TYPO3\CMS\Extbase\Annotation\ORM\Lazy;
 use TYPO3\CMS\Extbase\Domain\Model\FileReference;
@@ -16,7 +17,7 @@ class Location extends AbstractEntity
 {
 
   /**
-   * @var \DateTime
+   * @var DateTime
    */
   protected $tstamp;
 
@@ -27,17 +28,17 @@ class Location extends AbstractEntity
   protected $hidden;
 
   /**
-   * @var \Quicko\Clubmanager\Domain\Model\Member
+   * @var Member
    */
   protected $member;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $slug;
 
   /**
-   * @var \integer
+   * @var integer
    */
   protected $kind;
 
@@ -47,33 +48,33 @@ class Location extends AbstractEntity
   protected $salutation;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $title;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $firstname;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $midname;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $lastname;
 
 
   /**
-   * @var \string
+   * @var string
    */
   protected $company;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $street;
 
@@ -83,88 +84,87 @@ class Location extends AbstractEntity
   protected $addAddressInfo;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $zip;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $city;
 
   /**
-   * @var \int
+   * @var int
    */
   protected $state;
 
   /**
-   * @var \Quicko\Clubmanager\Domain\Model\Country
-   * @Lazy
+   * @var string
    */
   protected $country;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $latitude;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $longitude;
 
   /**
    * @var FileReference
-   * @Lazy 
+   * @Lazy
    * @Cascade("remove")
    */
   protected $image = null;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $info;
 
   /**
-   * @var ObjectStorage<\Quicko\Clubmanager\Domain\Model\Category>
+   * @var ObjectStorage<Category>
    * @Lazy
    */
   protected $categories;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $phone;
 
   /**
-   * @var \string
+   * @var string
    */
-  protected $mobile;  
+  protected $mobile;
 
   /**
-   * @var \string
+   * @var string
    */
-  protected $fax;    
+  protected $fax;
 
   /**
-   * @var \string
+   * @var string
    */
-  protected $email;     
-  
-  /**
-   * @var \string
-   */
-  protected $website;    
+  protected $email;
 
   /**
-   * @var ObjectStorage<\Quicko\Clubmanager\Domain\Model\Socialmedia>
+   * @var string
+   */
+  protected $website;
+
+  /**
+   * @var ObjectStorage<Socialmedia>
    * @Lazy
    * @Cascade("remove")
    */
   protected $socialmedia;
 
   /**
-   * @var \string
+   * @var string
    */
   protected $youtubeVideo;
 
@@ -204,7 +204,7 @@ class Location extends AbstractEntity
     return $this->member;
   }
 
-  public function setMember(\Quicko\Clubmanager\Domain\Model\Member $member)
+  public function setMember(Member $member)
   {
     $this->member = $member;
   }
@@ -367,7 +367,7 @@ class Location extends AbstractEntity
   public function setMobile($mobile)
   {
     $this->mobile = $mobile;
-  }  
+  }
 
   public function getFax()
   {
@@ -377,8 +377,8 @@ class Location extends AbstractEntity
   public function setFax($fax)
   {
     $this->fax = $fax;
-  }  
-  
+  }
+
   public function getEmail()
   {
     return $this->email;
@@ -387,7 +387,7 @@ class Location extends AbstractEntity
   public function setEmail($email)
   {
     $this->email = $email;
-  }  
+  }
 
   public function getWebsite()
   {
@@ -397,14 +397,14 @@ class Location extends AbstractEntity
   public function setWebsite($website)
   {
     $this->website = $website;
-  }    
+  }
 
-  public function getSocialmedia()
+  public function getSocialMedia()
   {
     return $this->socialmedia;
   }
 
-  public function setSocialmedia(ObjectStorage $socialmedia)
+  public function setSocialMedia(ObjectStorage $socialmedia)
   {
     $this->socialmedia = $socialmedia;
   }
@@ -418,7 +418,7 @@ class Location extends AbstractEntity
   {
     $this->youtubeVideo = $youtubeVideo;
   }
-  
+
   public function getCategories()
   {
     return $this->categories;
@@ -431,17 +431,10 @@ class Location extends AbstractEntity
 
   public function getCountry()
   {
-    if ($this->country instanceof LazyLoadingProxy) {
-      /** @var Country|null $resolvedValue */
-      $resolvedValue = $this->country->_loadRealInstance();
-      return $this->country = $resolvedValue instanceof Country
-        ? $resolvedValue
-        : null;
-    }
     return $this->country;
   }
 
-  public function setCountry(\Quicko\Clubmanager\Domain\Model\Country $country)
+  public function setCountry(string $country)
   {
     $this->country = $country;
   }

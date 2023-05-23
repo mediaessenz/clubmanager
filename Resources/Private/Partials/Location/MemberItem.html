@@ -32,7 +32,7 @@
         <p class="card-text mb-2">
             <span class="street">{location.street}</span><br/>
             <span class="zip">{location.zip} </span> <span class="city">{location.city}</span><br/>
-            <span class="country">{location.country.shortNameLocal}</span>
+            <span class="country"><f:translate key="LLL:EXT:core/Resources/Private/Language/Iso/countries.xlf:{location.country}.name" /></span>
         </p>
 
         <f:if condition="{location.phone || location.mobile || location.fax || location.email || location.url}">

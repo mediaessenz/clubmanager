@@ -98,12 +98,12 @@ return [
         ],
         'location' => [
             'exclude' => true,
-            'label' => '', /* SHALL_NOT_BE_VISIBLE */
+            'label' => 'Location', /* SHALL_NOT_BE_VISIBLE */
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
                 'foreign_table' => 'tx_clubmanager_domain_model_location',
             ],
-        ],        
+        ],
     ],
 ];
